@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Galería de Cerámica</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="header">
+            <img
+                src="casadelajuventud.jpeg"
+                alt="Logo Casa de la Juventud"
+                class="logo"
+            />
+            <div class="titles">
+                <h1>Galería de Proyectos</h1>
+                <h2>Casa de la Juventud</h2>
+            </div>
+        </header>
+
+        <main class="container">
+            <p class="subtext">Sube y comparte tus creaciones</p>
+
+            <section id="upload-form">
+                <h2>Subir Proyecto</h2>
+                <form id="project-form">
+                    <label for="author">Nombre del autor:</label>
+                    <input type="text" id="author" name="author" required />
+
+                    <label for="image">Imagen del Proyecto:</label>
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                        required
+                    />
+
+                    <label for="description">Descripción:</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        required
+                    ></textarea>
+
+                    <button type="submit">Subir Proyecto</button>
+                </form>
+            </section>
+
+            <section id="projects">
+                <h2>Proyectos Subidos</h2>
+                <div id="projects-list"></div>
+            </section>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>

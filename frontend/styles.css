@@ -1,0 +1,133 @@
+/* Reset y base */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Encabezado */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.titles h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.titles h2 {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.subtext {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #444;
+}
+
+/* Formulario */
+.card {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+form input[type='text'],
+form input[type='file'],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Proyectos */
+.projects-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.project-item {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.project-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.project-item h3 {
+    margin: 15px;
+    font-size: 1.2rem;
+    color: #222;
+    text-transform: capitalize;
+}
+
+.project-item p {
+    margin: 0 15px 10px;
+    color: #555;
+}
+
+.project-item small {
+    display: block;
+    margin: 0 15px 15px;
+    color: #888;
+    font-size: 0.85rem;
+}
