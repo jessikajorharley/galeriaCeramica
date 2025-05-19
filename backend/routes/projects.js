@@ -13,12 +13,17 @@ router.post('/projects', upload.single('image'), async (req, res) => {
     const { author, description } = req.body;
 
     if (!req.file) {
+        console.warn('⚠️ No se subió ninguna imagen');
         return res.status(400).json({ error: 'No se subió ninguna imagen' });
     }
+
     const imagePath = req.file.path;
+    console.log('📸 Imagen recibida:', imagePath);
 
     try {
+        console.log('Subiendo imagen a Cloudinary...');
         const result = await cloudinary.uploader.upload(imagePath);
+        console.log('Imagen subida:', result.secure_url);
         fs.unlinkSync(imagePath);
 
         const sql = `
@@ -32,10 +37,14 @@ router.post('/projects', upload.single('image'), async (req, res) => {
             result.secure_url,
         ]);
 
+        console.log('📝 Proyecto guardado en DB:', rows[0]);
+
         res.json({ message: 'Proyecto subido con éxito', project: rows[0] });
     } catch (error) {
-        console.error('Error al subir proyecto:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        console.error('Error al subir proyecto:', error.message);
+        res.status(500).json({
+            error: error.message || 'Error interno del servidor',
+        });
     }
 });
 
