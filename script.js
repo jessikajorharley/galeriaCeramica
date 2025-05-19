@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectsList = document.getElementById('projects-list');
 
     // Obtener todos los proyectos
-    fetch('http://localhost:5000/api/projects')
+    fetch('https://galeriaceramica-backend.onrender.com/api/projects')
         .then((res) => res.json())
         .then((data) => {
             console.log(data);
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData(form);
 
-        fetch('http://localhost:5000/api/projects', {
+        fetch('https://galeriaceramica-backend.onrender.com/api/projects', {
             method: 'POST',
             body: formData,
         })
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (confirm('¿Estás seguro que quieres eliminar este proyecto?')) {
                 try {
                     const res = await fetch(
-                        `http://localhost:5000/api/projects/${project.id}`,
+                        `https://galeriaceramica-backend.onrender.com/api/projects`,
                         {
                             method: 'DELETE',
                         }
