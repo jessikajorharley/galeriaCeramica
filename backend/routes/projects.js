@@ -1,53 +1,60 @@
-// backend/routes/projects.js
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
-const pool = require('../db'); // ✅ Usa pool en lugar de connection (PostgreSQL)
+const pool = require('../db');
 const cloudinary = require('../utils/cloudinary');
 
-// Configuración de multer para manejar imágenes
+// Multer configuración
 const upload = multer({ dest: 'uploads/' });
 
-// Ruta POST para subir proyecto
+// POST para subir proyecto con imagen
 router.post('/projects', upload.single('image'), async (req, res) => {
     const { author, description } = req.body;
+
+    if (!req.file) {
+        return res.status(400).json({ error: 'No se subió ninguna imagen' });
+    }
     const imagePath = req.file.path;
 
     try {
         const result = await cloudinary.uploader.upload(imagePath);
-        fs.unlinkSync(imagePath); // Borrar imagen local después de subir
+        fs.unlinkSync(imagePath);
 
         const sql = `
-      INSERT INTO projects (author, description, image_url)
-      VALUES ($1, $2, $3)
-    `;
-        await pool.query(sql, [author, description, result.secure_url]);
+          INSERT INTO projects (author, description, image_url)
+          VALUES ($1, $2, $3)
+          RETURNING *
+        `;
+        const { rows } = await pool.query(sql, [
+            author,
+            description,
+            result.secure_url,
+        ]);
 
-        res.json({ message: 'Proyecto subido con éxito' });
+        res.json({ message: 'Proyecto subido con éxito', project: rows[0] });
     } catch (error) {
         console.error('Error al subir proyecto:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
 
-// Ruta GET para ver todos los proyectos
+// GET para obtener todos los proyectos
 router.get('/projects', async (req, res) => {
     try {
         const result = await pool.query(
             'SELECT * FROM projects ORDER BY created_at DESC'
         );
-        res.json(result.rows); // ✅ PostgreSQL devuelve resultados en .rows
+        res.json(result.rows);
     } catch (error) {
         console.error('Error al obtener proyectos:', error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });
 
-// Ruta DELETE para eliminar un proyecto por id
+// DELETE para eliminar proyecto por id
 router.delete('/projects/:id', async (req, res) => {
     const projectId = req.params.id;
-
     try {
         const result = await pool.query('DELETE FROM projects WHERE id = $1', [
             projectId,
