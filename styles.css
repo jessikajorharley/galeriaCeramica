@@ -132,7 +132,8 @@ form button:hover {
 
 .project-item img {
     width: 100%;
-    height: 100px;
+    height: auto;
+    max-height: 120px; /* Limita la altura, pero permite ver la imagen entera */
     object-fit: contain;
     border-radius: 5px;
     background-color: #f0f0f0;
