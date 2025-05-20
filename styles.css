@@ -30,8 +30,8 @@ body {
 }
 
 .titles {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .titles h1 {
@@ -72,15 +72,16 @@ form input[type='text'],
 form input[type='file'],
 form textarea {
     width: 100%;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 0.1rem;
+    border-radius: 5px;
     border: 1px solid #ccc;
+    font-size: 1rem;
 }
 
 form button {
     margin-top: 15px;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #4caf50;
     border: none;
     color: white;
     font-size: 1rem;
@@ -89,33 +90,56 @@ form button {
 }
 
 form button:hover {
-    background-color: #0056b3;
+    background-color: #45a049;
+}
+
+/* Contenedor general que centra vertical y horizontalmente */
+.project-form {
+    box-sizing: border-box;
+    max-width: 100px;
+    width: 90%;
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    margin: 0 auto;
+    padding: 1rem;
+    overflow-y: auto; /* Si no cabe todo, se puede hacer scroll dentro */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Proyectos */
+
 .projects-feed {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    margin-top: 20px;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
 }
 
 .project-item {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
 .project-item img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 .project-item h3 {
-    margin: 15px;
-    font-size: 1.2rem;
+    margin: 0.5rem 0 0.3rem;
+    font-size: 1rem;
     color: #222;
     text-transform: capitalize;
 }
@@ -123,6 +147,7 @@ form button:hover {
 .project-item p {
     margin: 0 15px 10px;
     color: #555;
+    font-size: 0.85rem;
 }
 
 .project-item small {
@@ -130,4 +155,18 @@ form button:hover {
     margin: 0 15px 15px;
     color: #888;
     font-size: 0.85rem;
+}
+.project-item button {
+    margin-top: 0.5rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    background-color: #e53935;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.project-item button:hover {
+    background-color: #c62828;
 }
