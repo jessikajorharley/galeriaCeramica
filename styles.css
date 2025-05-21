@@ -8,13 +8,10 @@ body {
 header {
     display: flex;
     align-items: center;
-    gap: 20px;
-    background: linear-gradient(90deg, #81c784, #aed581); /* verde degradado */
-    color: white;
-    padding: 20px 30px;
-    border-radius: 0 0 20px 20px; /* esquinas redondeadas abajo */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #fff;
+    padding: 15px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
